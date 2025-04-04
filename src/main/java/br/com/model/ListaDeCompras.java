@@ -1,5 +1,6 @@
 package br.com.model;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,39 @@ public class ListaDeCompras {
     public void removerProduto(String nome) {
         produtos.removeIf(p -> p.getNome().equalsIgnoreCase(nome));
     }
+
+    public void salvarEmArquivoTexto(String nomeArquivo){
+        if(!produtos.isEmpty()) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo, true))) {
+                for (Produto produto : produtos) {
+                    writer.write(produto.getNome() + " - " + produto.getQuantidade() + " - " +
+                            produto.getPreco());
+                    writer.newLine();
+                }
+            } catch (IOException e) {
+                System.out.println("Erro ao salvar o arquivo: " + e.getMessage());
+            }
+        }else{
+            System.out.println("Lista vazia!");
+        }
+    }
+
+    public void carregarDeArquivoTexto(String nomeArquivo) {
+        produtos.clear();
+        try (BufferedReader reader = new BufferedReader(new FileReader(nomeArquivo))) {
+            String linha;
+            while ((linha = reader.readLine()) != null) {
+                String[] partes = linha.split(" - ");
+                produtos.add(new Produto(partes[0], Integer.parseInt(partes[1]), Double.parseDouble(partes[2])));
+            }
+        }catch (IOException e) {
+            System.out.println("Erro ao carregar o arquivo: "+e.getMessage());
+        }
+    }
+
+
+
+
 
     @Override
     public String toString() {

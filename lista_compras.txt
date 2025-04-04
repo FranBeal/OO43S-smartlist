@@ -1,0 +1,5 @@
+tomate - 2 - 5.79
+feijao - 3 - 7.5
+cafe - 1 - 30.0
+laranja - 2 - 1.0
+feijao - 2 - 6.8
