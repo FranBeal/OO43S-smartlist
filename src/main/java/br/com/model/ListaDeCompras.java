@@ -50,9 +50,27 @@ public class ListaDeCompras {
         }
     }
 
+    public void salvarEmArquivoBinario(String nomeArquivo) {
+        if(!produtos.isEmpty()){
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
+                oos.writeObject(produtos);
+            } catch (IOException e) {
+                System.out.println("Erro ao salvar o arquivo: "+e.getMessage());
+            }
+        }else{
+            System.out.println("Lista vazia!");
+        }
+    }
 
-
-
+    @SuppressWarnings("unchecked") // Suprime avisos de operações não verificadas, esta anotação é usada para silenciar aviso do compilador.
+    public void carregarDeArquivoBinario(String nomeArquivo) {
+        produtos.clear();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
+            produtos = (List<Produto>) ois.readObject();
+        } catch (ClassNotFoundException | IOException e){
+            System.out.println("Erro ao salvar o arquivo: "+e.getMessage());
+        }
+    }
 
     @Override
     public String toString() {

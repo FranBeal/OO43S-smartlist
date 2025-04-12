@@ -39,6 +39,12 @@ public class ListaDeComprasController {
             case 5:
                 carregarDeArqTexto();
                 break;
+            case 6:
+                salvarEmArquivoBinario();
+                break;
+            case 7:
+                carregarDeArquivoBinario();
+                break;
             case 0:
                 view.exibirMensagem("Saindo...");
                 break;
@@ -71,5 +77,13 @@ public class ListaDeComprasController {
     private void carregarDeArqTexto() {
         model.carregarDeArquivoTexto("lista_compras.txt"); //ou "D:/dev/lista_compras.txt"
 
+    }
+
+    private void salvarEmArquivoBinario(){
+        model.salvarEmArquivoBinario("lista_compras.bin");
+    }
+
+    private void carregarDeArquivoBinario(){
+        model.carregarDeArquivoBinario("lista_compras.bin");
     }
 }
