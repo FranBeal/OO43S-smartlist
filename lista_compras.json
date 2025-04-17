@@ -1,0 +1,9 @@
+[ {
+  "nome" : "arroz",
+  "quantidade" : 2,
+  "preco" : 10.5
+}, {
+  "nome" : "Feijao",
+  "quantidade" : 3,
+  "preco" : 8.0
+} ]

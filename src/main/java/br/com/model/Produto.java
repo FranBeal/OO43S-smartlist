@@ -7,6 +7,10 @@ public class Produto implements Serializable {
     private int quantidade;
     private double preco;
 
+    // Construtor padrão (sem argumentos)
+    public Produto() {
+    }
+
     public Produto(String nome, int quantidade, double preco) {
         this.nome = nome;
         this.quantidade = quantidade;
