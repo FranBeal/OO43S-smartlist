@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListaDeCompras {
     private List<Produto> produtos;
@@ -101,6 +103,28 @@ public class ListaDeCompras {
             System.out.println("Erro ao salvar o arquivo: "+e.getMessage());
         }
     }
+
+    // Filtra produtos com quantidade mínima usando streams
+    public List<Produto> filtrarPorQuantidadeMinima(int quantidadeMinima) {
+        return produtos.stream()
+                .filter(p -> p.getQuantidade() >= quantidadeMinima)
+                .collect(Collectors.toList());
+    }
+
+    // Calcula o valor total da lista usando streams
+    public double calcularValorTotal() {
+        return produtos.stream()
+                .mapToDouble(p -> p.getQuantidade() * p.getPreco())
+                .sum();
+    }
+
+    // Imprime a lista de produtos em ordem alfabética
+    public void imprimirLista() {
+        produtos.stream()
+                .sorted(Comparator.comparing(p -> p.getNome().toLowerCase())) // Ordena por nome
+                .forEach(System.out::println);
+    }
+
 
     @Override
     public String toString() {

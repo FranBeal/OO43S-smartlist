@@ -51,6 +51,15 @@ public class ListaDeComprasController {
             case 9:
                 carregarDeArquivoJson();
                 break;
+            case 10:
+                filtrarPorQuantidadeMinima();
+                break;
+            case 11:
+                calcularValorTotal();
+                break;
+            case 12:
+                imprimirLista();
+                break;
             case 0:
                 view.exibirMensagem("Saindo...");
                 break;
@@ -99,5 +108,19 @@ public class ListaDeComprasController {
 
     private void carregarDeArquivoJson(){
         model.carregarDeArquivoJson("lista_compras.json");
+    }
+
+    private void filtrarPorQuantidadeMinima(){
+        int quantidadeMinima = view.lerQuantidadeMinima();
+        System.out.println(model.filtrarPorQuantidadeMinima(quantidadeMinima).toString());
+    }
+
+    private void calcularValorTotal(){
+        System.out.println("Valor Total R$ "+model.calcularValorTotal());
+    }
+
+    private void imprimirLista(){
+        model.imprimirLista();
+        System.out.println("Valor Total R$ "+model.calcularValorTotal());
     }
 }
