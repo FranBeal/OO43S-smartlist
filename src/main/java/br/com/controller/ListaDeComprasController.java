@@ -1,7 +1,6 @@
 package br.com.controller;
 
-import br.com.model.ListaDeCompras;
-import br.com.model.Produto;
+import br.com.model.*;
 import br.com.view.ListaDeComprasView;
 
 public class ListaDeComprasController {
@@ -85,29 +84,33 @@ public class ListaDeComprasController {
     }
 
     private void salvarEmAqrTexto() {
-        model.salvarEmArquivoTexto("lista_compras.txt"); //ou "D:/dev/lista_compras.txt"
-
+        model.setEstrategiaPersistencia(new PersistenciaTexto());
+        model.salvar("lista_compras.txt");
     }
 
     private void carregarDeArqTexto() {
-        model.carregarDeArquivoTexto("lista_compras.txt"); //ou "D:/dev/lista_compras.txt"
-
+        model.setEstrategiaPersistencia(new PersistenciaTexto());
+        model.carregar("lista_compras.txt");
     }
 
     private void salvarEmArquivoBinario(){
-        model.salvarEmArquivoBinario("lista_compras.bin");
+        model.setEstrategiaPersistencia(new PersistenciaBinario());
+        model.salvar("lista_compras.bin");
     }
 
     private void carregarDeArquivoBinario(){
-        model.carregarDeArquivoBinario("lista_compras.bin");
+        model.setEstrategiaPersistencia(new PersistenciaBinario());
+        model.carregar("lista_compras.bin");
     }
 
     private void salvarEmArquivoJson(){
-        model.salvarEmArquivoJson("lista_compras.json");
+        model.setEstrategiaPersistencia(new PersistenciaJson());
+        model.salvar("lista_compras.json");
     }
 
     private void carregarDeArquivoJson(){
-        model.carregarDeArquivoJson("lista_compras.json");
+        model.setEstrategiaPersistencia(new PersistenciaJson());
+        model.carregar("lista_compras.json");
     }
 
     private void filtrarPorQuantidadeMinima(){
